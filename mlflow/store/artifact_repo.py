@@ -85,6 +85,8 @@ class ArtifactRepository:
                 if not os.path.exists(local_path):
                     os.mkdir(local_path)
                 for file_info in listing:
+                    if file_info.path == local_path:
+                        return local_path
                     download_artifacts_into(artifact_path=file_info.path, dest_dir=local_path)
             else:
                 self._download_file(remote_file_path=artifact_path, local_path=local_path)
